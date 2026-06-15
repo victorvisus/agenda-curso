@@ -417,3 +417,99 @@ Preparar Git correctamente:
 2. Comprobar que `.env` queda ignorado.
 3. Revisar los archivos que entraran en el primer commit.
 4. Crear el primer commit limpio de infraestructura.
+
+---
+
+## Paso 10 - Inicializacion del repositorio Git local
+
+Se inicializo el repositorio Git en la raiz del proyecto:
+
+```bash
+git init -b main
+```
+
+Esto creo la carpeta interna `.git/` y dejo la rama principal con el nombre `main`.
+
+### Comprobacion de archivos ignorados
+
+Antes de hacer el primer commit, se verifico que los archivos sensibles quedaban fuera del repositorio:
+
+```bash
+git check-ignore -v .env nginx/certs/cypherstudios.crt nginx/certs/cypherstudios.key
+```
+
+Resultado esperado:
+
+- `.env` queda ignorado por `.gitignore`.
+- `nginx/certs/*.crt` queda ignorado.
+- `nginx/certs/*.key` queda ignorado.
+
+Esto es importante porque el repositorio no debe contener secretos, credenciales ni claves privadas.
+
+### Preparacion del primer commit
+
+Se anadieron los archivos al area de staging:
+
+```bash
+git add .
+```
+
+Despues se reviso el estado:
+
+```bash
+git status --short
+```
+
+Se comprobo que entraban los archivos de infraestructura, codigo minimo y documentacion, pero no `.env` ni certificados.
+
+### Primer commit
+
+Se creo el primer commit:
+
+```bash
+git commit -m "Initial project infrastructure"
+```
+
+Commit generado:
+
+```text
+316248d Initial project infrastructure
+```
+
+Este commit contiene la infraestructura inicial del proyecto:
+
+- Docker Compose.
+- Nginx.
+- FastAPI minimo.
+- Frontend minimo.
+- Documentacion en `docs/`.
+- Registro vivo `PROJECT_SETUP.md`.
+
+### Estado de GitHub CLI
+
+Se comprobo si estaba instalada la herramienta oficial de GitHub:
+
+```bash
+gh --version
+```
+
+Resultado:
+
+```text
+gh no esta instalado o no esta disponible en el PATH
+```
+
+Por tanto, la conexion con GitHub se hara mediante URL remota del repositorio creado en GitHub.
+
+---
+
+## Proximo paso recomendado
+
+Crear un repositorio vacio en GitHub y copiar su URL remota.
+
+Despues se ejecutara:
+
+```bash
+git remote add origin <URL_DEL_REPOSITORIO>
+git push -u origin main
+```
