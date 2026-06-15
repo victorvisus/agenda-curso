@@ -513,3 +513,79 @@ Despues se ejecutara:
 git remote add origin <URL_DEL_REPOSITORIO>
 git push -u origin main
 ```
+
+---
+
+## Paso 11 - Conexion con GitHub
+
+Se creo/configuro el repositorio remoto en GitHub:
+
+```text
+https://github.com/victorvisus/agenda-curso.git
+```
+
+### Anadir remoto `origin`
+
+Se conecto el repositorio local con GitHub:
+
+```bash
+git remote add origin https://github.com/victorvisus/agenda-curso.git
+```
+
+Despues se verifico:
+
+```bash
+git remote -v
+```
+
+Resultado:
+
+```text
+origin  https://github.com/victorvisus/agenda-curso.git (fetch)
+origin  https://github.com/victorvisus/agenda-curso.git (push)
+```
+
+### Subida inicial
+
+Se subio la rama principal:
+
+```bash
+git push -u origin main
+```
+
+Resultado:
+
+```text
+branch 'main' set up to track 'origin/main'
+main -> main
+```
+
+Esto significa que la rama local `main` queda vinculada con la rama remota `origin/main`.
+
+A partir de ahora, para subir cambios despues de hacer commits, normalmente bastara con:
+
+```bash
+git push
+```
+
+---
+
+## Estado Git actual
+
+Repositorio local:
+
+```text
+C:\AppDesarrollo\CursoProyectos\calendario-curso
+```
+
+Repositorio remoto:
+
+```text
+https://github.com/victorvisus/agenda-curso.git
+```
+
+Rama principal:
+
+```text
+main
+```
