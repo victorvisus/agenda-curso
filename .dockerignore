@@ -1,0 +1,11 @@
+.git
+.gitignore
+.dockerignore
+.idea
+.vscode
+docs/
+PROJECT_SETUP.md
+servidor/.venv
+servidor/env
+__pycache__
+*.py[cod]

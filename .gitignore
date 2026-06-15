@@ -1,0 +1,29 @@
+# Secretos y entornos
+.env
+.env.local
+nginx/certs/*.crt
+nginx/certs/*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.pytest_cache/
+
+# Docker / datos locales
+data/
+db_data/
+.docker_volumes/
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.workspace
+
+# Sistema
+Thumbs.db
+.DS_Store
