@@ -589,3 +589,40 @@ Rama principal:
 ```text
 main
 ```
+
+---
+
+## Nota pendiente - Concurrencia y lecturas sucias en base de datos
+
+Se anadio un nuevo documento de referencia:
+
+```text
+docs/LECTURA_SUCIA_BBDD.md
+```
+
+Este archivo se tendra en cuenta cuando se implemente la capa de base de datos y las rutas que modifican informacion critica.
+
+### Ideas importantes a recordar
+
+- Las lecturas sucias no se resuelven desde Docker, sino desde la base de datos.
+- Hay que revisar el nivel de aislamiento de las transacciones.
+- Para operaciones criticas conviene usar bloqueo pesimista con `FOR UPDATE`.
+- En SQLModel/SQLAlchemy esto se expresa con:
+
+```python
+statement = select(Modelo).where(Modelo.id == modelo_id).with_for_update()
+```
+
+- La aplicacion no debe conectarse a la base de datos con un usuario administrador o `root`.
+- El usuario de base de datos de la app debe tener permisos limitados.
+
+### Decision para mas adelante
+
+Cuando construyamos `servidor/database.py` y las rutas de escritura, especialmente creacion, actualizacion o cancelacion de citas, se revisara:
+
+1. Nivel de aislamiento de la conexion.
+2. Uso de `with_for_update()` en operaciones sensibles.
+3. Restricciones unicas en base de datos para evitar duplicados.
+4. Permisos minimos del usuario de conexion.
+
+Esta nota queda marcada como importante para la fase de persistencia.
