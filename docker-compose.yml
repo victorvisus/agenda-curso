@@ -3,7 +3,8 @@ services:
     image: nginx:1.25-alpine
     container_name: cypherstudios_proxy
     ports:
-      - "${SERVER_PORT}:80"
+      - "${SERVER_PORT_HTTP}:80"
+      - "${SERVER_PORT}:443"
     volumes:
       - ./public:/usr/share/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro

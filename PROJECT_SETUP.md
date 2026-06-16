@@ -626,3 +626,278 @@ Cuando construyamos `servidor/database.py` y las rutas de escritura, especialmen
 4. Permisos minimos del usuario de conexion.
 
 Esta nota queda marcada como importante para la fase de persistencia.
+
+---
+
+## Paso 12 - HTTPS local con certificados de confianza (mkcert)
+
+### Problema detectado
+
+El proyecto ya tenia configurado Nginx con HTTPS (puerto 443 con SSL), pero los certificados eran autofirmados con OpenSSL.
+
+Esto provocaba que el navegador mostrara el aviso:
+
+```text
+Tu conexion no es privada
+```
+
+Para desarrollo local esto es molesto y puede enmascarar otros problemas de red.
+
+### Solucion: mkcert
+
+Se utilizo la herramienta `mkcert` para generar certificados de desarrollo que el sistema operativo y el navegador reconocen como de confianza.
+
+`mkcert` funciona creando una Autoridad Certificadora (CA) local propia e instalandola en el almacen de confianza del sistema. Los certificados que genera estan firmados por esa CA, por lo que el navegador los acepta sin avisos.
+
+### Instalacion de la CA local
+
+Se verifico que mkcert estaba instalado:
+
+```bash
+mkcert --version
+```
+
+Resultado:
+
+```text
+v1.4.4
+```
+
+Se confirmo que la CA local ya estaba creada:
+
+```bash
+mkcert -install
+```
+
+Resultado:
+
+```text
+The local CA is already installed in the system trust store!
+```
+
+### Generacion de certificados
+
+Se generaron los certificados reemplazando los anteriores autofirmados:
+
+```bash
+mkcert -key-file nginx/certs/cypherstudios.key -cert-file nginx/certs/cypherstudios.crt localhost 127.0.0.1 ::1
+```
+
+Resultado:
+
+```text
+Created a new certificate valid for the following names:
+ - "localhost"
+ - "127.0.0.1"
+ - "::1"
+
+It will expire on 16 September 2028
+```
+
+Los certificados cubren `localhost`, la IP `127.0.0.1` y la direccion IPv6 `::1`.
+
+### Instalacion de la CA en el almacen del sistema
+
+Despues de generar los certificados, Chrome seguia mostrando el aviso de conexion no segura.
+
+Se descubrio que la CA de mkcert estaba instalada en el almacen de certificados del **usuario**, pero Chrome en Windows usa el almacen del **sistema**.
+
+Se verifico:
+
+```bash
+certutil -user -store Root | findstr /i mkcert
+```
+
+Resultado: la CA aparecia aqui.
+
+```bash
+certutil -store Root | findstr /i mkcert
+```
+
+Resultado: la CA no aparecia.
+
+Se instalo en el almacen del sistema con permisos de administrador:
+
+```powershell
+Start-Process certutil -ArgumentList '-addstore','Root','C:\Users\Victor\AppData\Local\mkcert\rootCA.pem' -Verb RunAs -Wait
+```
+
+Despues de esto, se verifico que la CA aparecia en ambos almacenes.
+
+> Importante: despues de instalar la CA en el almacen del sistema, es necesario cerrar y reabrir Chrome completamente para que recargue los certificados.
+
+### Redireccion HTTP a HTTPS
+
+Se modifico la configuracion de Nginx para anadir un bloque `server` que escucha en el puerto 80 y redirige todo el trafico a HTTPS:
+
+```nginx
+server {
+    listen 80;
+    server_name localhost tu-subdominio.ddns.net;
+
+    return 301 https://$host$request_uri;
+}
+```
+
+Esto significa que cualquier peticion HTTP se convierte automaticamente en HTTPS con una redireccion permanente (301).
+
+### Cambios en Docker Compose
+
+Se anadio un segundo mapeo de puertos en el servicio `nginx`:
+
+```yaml
+ports:
+  - "${SERVER_PORT_HTTP}:80"
+  - "${SERVER_PORT}:443"
+```
+
+Esto expone ambos puertos al sistema host.
+
+### Nueva variable de entorno
+
+Se anadio la variable `SERVER_PORT_HTTP` en `.env` y `.env.example`:
+
+```bash
+SERVER_PORT_HTTP=9080
+```
+
+### Puertos locales resultantes
+
+```text
+localhost:9090  ->  contenedor nginx:443  (HTTPS)
+localhost:9080  ->  contenedor nginx:80   (HTTP -> redirige a HTTPS)
+```
+
+### Verificacion
+
+Se levantaron los contenedores:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+Se comprobo el estado:
+
+```bash
+docker compose ps
+```
+
+Resultado:
+
+```text
+cypherstudios_api     Up   8000/tcp
+cypherstudios_proxy   Up   0.0.0.0:9080->80/tcp, 0.0.0.0:9090->443/tcp
+```
+
+Se verificaron tres rutas:
+
+1. HTTPS directo:
+
+```text
+https://localhost:9090/
+```
+
+Resultado: HTTP 200, pagina servida correctamente.
+
+2. API a traves de HTTPS:
+
+```text
+https://localhost:9090/api/health
+```
+
+Resultado:
+
+```json
+{"status":"ok","service":"agenda-api"}
+```
+
+3. Redireccion HTTP a HTTPS:
+
+```text
+http://localhost:9080/
+```
+
+Resultado: HTTP 301, redireccion a `https://localhost/`.
+
+El navegador ya no muestra el aviso de conexion no segura al acceder por HTTPS.
+
+### Nota para cuando se configure el dominio externo
+
+Cuando se obtenga el dominio en No-IP, habra que:
+
+1. Regenerar los certificados con `mkcert` incluyendo el nuevo dominio.
+2. Actualizar `server_name` en `nginx/nginx.conf`.
+3. Para produccion real, sustituir mkcert por certificados de Let's Encrypt (Certbot).
+
+---
+
+## Estado actual
+
+La infraestructura de desarrollo esta funcionando con HTTPS de confianza local.
+
+Tenemos validado:
+
+- Docker Compose con dos servicios.
+- Nginx como punto de entrada con SSL/TLS.
+- Certificados locales de confianza generados con mkcert.
+- CA de mkcert instalada en el almacen del sistema (Chrome confía en ella).
+- Redireccion automatica de HTTP a HTTPS.
+- FastAPI como backend interno accesible a traves del proxy inverso.
+- Frontend estatico servido por Nginx.
+- Repositorio Git conectado a GitHub.
+
+---
+
+## Proximo paso recomendado - Dominio DDNS
+
+Queda pendiente la configuracion del dominio dinamico (DDNS) a traves de No-IP.
+
+Cuando se obtenga el subdominio, habra que:
+
+1. Actualizar la variable `DDNS_DOMAIN` en `.env` con el dominio real.
+2. Regenerar los certificados con `mkcert` incluyendo el nuevo dominio:
+
+```bash
+mkcert -key-file nginx/certs/cypherstudios.key -cert-file nginx/certs/cypherstudios.crt localhost 127.0.0.1 ::1 tu-dominio-real.ddns.net
+```
+
+3. Actualizar `server_name` en `nginx/nginx.conf` para que incluya el dominio real en lugar de `tu-subdominio.ddns.net`.
+4. Reiniciar los contenedores para que Nginx cargue los nuevos certificados:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+> Importante: los certificados de mkcert solo sirven para desarrollo local. Cuando el proyecto se exponga a internet, habra que sustituirlos por certificados reales de Let's Encrypt (Certbot) que el navegador de cualquier visitante pueda validar.
+
+---
+
+## ANEXO - Estado del entorno de desarrollo (16 de junio de 2026)
+
+### Completado
+
+- Estructura de carpetas del proyecto.
+- Archivos de control: `.gitignore`, `.dockerignore`, `.env.example`, `.env`.
+- Docker Compose con dos servicios (`nginx` y `web`).
+- Nginx configurado como proxy inverso con SSL/TLS.
+- Certificados locales de confianza generados con mkcert.
+- CA de mkcert instalada en el almacen del sistema (Chrome no muestra avisos).
+- Redireccion automatica de HTTP a HTTPS.
+- FastAPI minimo con endpoint `/health`.
+- Frontend estatico servido por Nginx.
+- Repositorio Git inicializado y conectado a GitHub.
+
+### Pendiente para poder trabajar (bloquea el desarrollo)
+
+1. **Dar de alta la cuenta en Supabase** y crear el proyecto de base de datos PostgreSQL.
+2. **Actualizar `SUPABASE_DB_URL` en `.env`** con la URL de conexion real (host, usuario, contrasena).
+3. **Cambiar `JWT_SECRET_KEY` en `.env`** por un valor largo y seguro antes de implementar la autenticacion.
+
+### Pendiente no bloqueante (se puede hacer mas adelante)
+
+1. **Obtener el dominio DDNS en No-IP** y configurar el acceso externo.
+2. **Regenerar los certificados con mkcert** incluyendo el nuevo dominio.
+3. **Actualizar `server_name` en `nginx/nginx.conf`** con el dominio real.
+4. **Sustituir mkcert por Let's Encrypt** cuando se exponga a internet.
