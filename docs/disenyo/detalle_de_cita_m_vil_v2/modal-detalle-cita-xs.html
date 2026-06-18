@@ -1,0 +1,280 @@
+<!doctype html>
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detalle de Cita</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Source+Sans+3:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3AFF7A",
+              "primary-dim": "#2abf5b",
+              "background-light": "#f5f8f6",
+              "background-dark": "#1C1E22",
+              "surface-dark": "#25282E",
+              "accent-border": "#2E3338",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              body: ["Source Sans 3", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for technical feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1c1e22;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #2e3338;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3aff7a;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-body antialiased min-h-screen flex items-center justify-center p-0 md:p-8"
+  >
+    <!-- Mobile Container Simulation for Desktop View -->
+    <div
+      class="relative w-full max-w-md h-screen md:h-[800px] flex flex-col bg-background-light dark:bg-background-dark md:rounded-xl md:border md:border-accent-border md:shadow-2xl overflow-hidden group/design-root"
+    >
+      <!-- Header -->
+      <header
+        class="flex items-center justify-between whitespace-nowrap border-b border-accent-border px-5 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-10"
+      >
+        <div class="flex items-center gap-3 text-slate-900 dark:text-white">
+          <button
+            class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          >
+            <span class="material-symbols-outlined text-2xl">arrow_back</span>
+          </button>
+          <h2
+            class="text-lg font-display font-bold leading-tight tracking-tight"
+          >
+            Detalle de Cita
+          </h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-500 dark:text-slate-400"
+          >
+            <span class="material-symbols-outlined text-xl">more_vert</span>
+          </button>
+          <button
+            class="flex items-center justify-center w-8 h-8 rounded-full bg-surface-dark/50 hover:bg-surface-dark transition-colors text-slate-900 dark:text-white border border-accent-border"
+          >
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </header>
+      <!-- Main Content (Scrollable) -->
+      <div class="flex-1 overflow-y-auto">
+        <!-- Client Profile Section -->
+        <div class="flex flex-col items-center justify-center pt-8 pb-6 px-4">
+          <div class="relative mb-4">
+            <div
+              class="bg-center bg-no-repeat bg-cover rounded-full h-28 w-28 border-2 border-primary shadow-[0_0_15px_rgba(58,255,122,0.2)]"
+              data-alt="Portrait of Alex Mercer"
+              style="
+                background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAoO-v6PyGkLl93esAz8Ri-qGhItZdOLGKikX1AKDgzU1AMiq_ijAh68cVlG8ONTAFPj_p0LbGeFHYI29MrQ3bTdbAomHG25G7NAMQQlEPUibg612iF8T_OGfvTU0qCSnAc1yUHo7I_DfURC7MskyEfkHiyh97-dHyEmzuL5KkysPVvC-Zrerxsww3muPthN6cng5K8yV2voeiIYHs-UwW2JGGRV9qWOI2BOxibgJbJ20JLdW98aPyr3yDUb6wucCzKLP32snS1Hgw&quot;);
+              "
+            ></div>
+            <div
+              class="absolute bottom-0 right-0 bg-background-dark rounded-full p-1 border border-accent-border"
+            >
+              <div class="bg-primary h-3 w-3 rounded-full animate-pulse"></div>
+            </div>
+          </div>
+          <h1
+            class="text-slate-900 dark:text-white text-2xl font-display font-bold leading-tight tracking-tight text-center mb-1"
+          >
+            Alex Mercer
+          </h1>
+          <div
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5"></span>
+            Cliente Frecuente
+          </div>
+        </div>
+        <!-- Stats/Quick Info Grid -->
+        <div class="grid grid-cols-2 gap-3 px-5 mb-6">
+          <div
+            class="bg-surface-dark rounded-lg p-3 border border-accent-border flex items-center gap-3"
+          >
+            <div class="bg-primary/10 p-2 rounded-md text-primary">
+              <span class="material-symbols-outlined text-xl">history</span>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-body">Historial</p>
+              <p class="text-sm font-semibold text-white font-display">
+                12 Citas
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-dark rounded-lg p-3 border border-accent-border flex items-center gap-3"
+          >
+            <div class="bg-primary/10 p-2 rounded-md text-primary">
+              <span class="material-symbols-outlined text-xl">star</span>
+            </div>
+            <div>
+              <p class="text-xs text-slate-400 font-body">Valoración</p>
+              <p class="text-sm font-semibold text-white font-display">
+                4.9/5.0
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Detailed Info Section -->
+        <div class="px-5 pb-6">
+          <div
+            class="bg-surface-dark/50 rounded-xl border border-accent-border overflow-hidden"
+          >
+            <!-- Service Row -->
+            <div
+              class="flex items-start gap-4 p-4 border-b border-accent-border/50"
+            >
+              <div class="text-slate-400 mt-1">
+                <span class="material-symbols-outlined">terminal</span>
+              </div>
+              <div class="flex-1">
+                <p
+                  class="text-slate-400 text-xs font-body mb-1 uppercase tracking-wider"
+                >
+                  Servicio Solicitado
+                </p>
+                <p
+                  class="text-slate-900 dark:text-white text-base font-semibold font-display"
+                >
+                  Desarrollo Web Full Stack
+                </p>
+                <p class="text-slate-500 text-sm mt-1">
+                  Paquete Enterprise - Fase 2
+                </p>
+              </div>
+            </div>
+            <!-- Date & Time Row -->
+            <div
+              class="flex items-start gap-4 p-4 border-b border-accent-border/50"
+            >
+              <div class="text-slate-400 mt-1">
+                <span class="material-symbols-outlined">calendar_month</span>
+              </div>
+              <div class="flex-1">
+                <p
+                  class="text-slate-400 text-xs font-body mb-1 uppercase tracking-wider"
+                >
+                  Fecha y Hora
+                </p>
+                <div class="flex items-baseline gap-2">
+                  <p
+                    class="text-slate-900 dark:text-white text-base font-semibold font-display"
+                  >
+                    12 Oct, 2023
+                  </p>
+                  <span class="text-primary text-sm font-bold">14:30</span>
+                </div>
+                <p class="text-slate-500 text-sm mt-1">Duración estimada: 2h</p>
+              </div>
+            </div>
+            <!-- Location Row -->
+            <div
+              class="flex items-start gap-4 p-4 border-b border-accent-border/50"
+            >
+              <div class="text-slate-400 mt-1">
+                <span class="material-symbols-outlined">location_on</span>
+              </div>
+              <div class="flex-1">
+                <p
+                  class="text-slate-400 text-xs font-body mb-1 uppercase tracking-wider"
+                >
+                  Ubicación
+                </p>
+                <p
+                  class="text-slate-900 dark:text-white text-base font-semibold font-display"
+                >
+                  Oficina Central - Sala 3B
+                </p>
+              </div>
+            </div>
+            <!-- Notes Row -->
+            <div class="flex items-start gap-4 p-4">
+              <div class="text-slate-400 mt-1">
+                <span class="material-symbols-outlined">description</span>
+              </div>
+              <div class="flex-1">
+                <p
+                  class="text-slate-400 text-xs font-body mb-1 uppercase tracking-wider"
+                >
+                  Notas Técnicas
+                </p>
+                <div
+                  class="bg-background-dark rounded border border-accent-border p-3 mt-2"
+                >
+                  <p class="text-slate-300 text-sm font-body leading-relaxed">
+                    Cliente solicita revisión exhaustiva de la arquitectura de
+                    base de datos actual. Preparar esquema de migración para
+                    PostgreSQL v15. Traer documentación de API.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sticky Footer Actions -->
+      <div
+        class="p-5 border-t border-accent-border bg-background-light dark:bg-background-dark backdrop-blur-sm z-10"
+      >
+        <div class="flex flex-col gap-3">
+          <button
+            class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 px-5 bg-primary hover:bg-primary-dim transition-colors text-background-dark text-base font-bold font-display tracking-wide shadow-[0_0_15px_rgba(58,255,122,0.15)]"
+          >
+            <span class="material-symbols-outlined mr-2 text-xl">edit</span>
+            Editar Cita
+          </button>
+          <button
+            class="flex w-full cursor-pointer items-center justify-center rounded-lg h-12 px-5 bg-surface-dark border border-accent-border hover:bg-accent-border transition-colors text-red-400 hover:text-red-300 text-base font-medium font-display tracking-wide"
+          >
+            <span class="material-symbols-outlined mr-2 text-xl">delete</span>
+            Eliminar Cita
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

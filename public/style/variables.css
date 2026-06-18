@@ -1,0 +1,82 @@
+/*
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+*/
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-source: "Source Sans 3", sans-serif;
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  --color-negro-carbon: #0e0e11;
+  --color-gris-antracita: #1c1e22;
+  --color-gris-acero: #3a3d42;
+  --color-gris-tecnico: #b5b8be;
+  --color-verde-criptico: #3aff7a;
+  --color-blanco-tecnico: #f2f3f5;
+
+  --color-primario: var(--color-verde-criptico);
+  --color-secundario: var(--color-negro-carbon);
+  --color-negro: var(--color-gris-antracita);
+  --color-blanco: var(--color-blanco-tecnico);
+  --color-gris: var(--color-gris-tecnico);
+  --color-accent: #f0544f;
+
+  --color-parrafo: var(--color-negro);
+  --color-parrafo-blanco: var(--color-blanco);
+  --color-link: var(--color-primario);
+  --color-link-hover: var(--color-secundario);
+  --color-nav: var(--color-negro);
+  --color-nav-hover: var(--color-primario);
+
+  --boton-std: var(--color-primario);
+  --boton-std-hover-transparent: transparent;
+  --boton-txt: var(--color-blanco);
+  --boton-txt-hover: var(--boton-std);
+
+  --color-background: var(--color-blanco-tecnico);
+
+  --font-titulos: var(--font-inter);
+  --font-textos: var(--font-source);
+  --font-nav: var(--font-textos);
+  --font-alt: var(--font-jetbrains);
+
+  --weight-thin: 100;
+  --weight-extralight: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+  --font-size-standard: calc(
+    14px + (16 - 14) * ((100vw - 320px) / (1920 - 320))
+  );
+  --font-size-title-1: calc(
+    32px + (48 - 32) * ((100vw - 480px) / (1920 - 480))
+  );
+  --font-size-title-2: calc(
+    28px + (32 - 28) * ((100vw - 480px) / (1920 - 480))
+  );
+  --font-size-nav: 1.1rem;
+  --font-size-footer: 0.9rem;
+  --font-form: 0.9rem;
+  --margin-min: 1vmax;
+  --margin-regular: 1.25vmax;
+  --margin-max: 2vmax;
+  --margin-vc: 1.5vmax;
+  --std-gradient: linear-gradient(
+    180deg,
+    rgba(173, 0, 0, 1) 45%,
+    rgba(19, 105, 54, 0) 100%
+  );
+  --shadow-std: 0px 7px 6px 0px rgba(0, 0, 0, 0.1);
+  --shadow-std-hover: 0px 0px 6px 0px rgba(0, 0, 0, 0.75);
+  --shadow-inset: inset 3px 4px 8px 0px rgba(17, 17, 17, 0.2);
+  --transition-vel: 0.25s;
+  --radius: 1em;
+}
+
+.site-nav {
+  --color-link: var(--color-blanco-tecnico);
+  --color-link-hover: var(--color-gris-tecnico);
+}

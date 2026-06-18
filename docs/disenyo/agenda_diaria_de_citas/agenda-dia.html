@@ -1,0 +1,586 @@
+<!doctype html>
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vista Diaria de Citas - Cypherstudios</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#38ff77",
+              "background-light": "#f5f8f6",
+              "background-dark": "#0f2315",
+              "surface-dark": "#162e1d",
+              "border-dark": "#2a4a35",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-slate-100 min-h-screen flex"
+  >
+    <!-- SideNavBar -->
+    <aside
+      class="w-64 border-r border-border-dark bg-background-dark flex-shrink-0 hidden lg:flex flex-col justify-between h-screen fixed left-0 top-0 overflow-y-auto z-20"
+    >
+      <div class="flex flex-col gap-4 p-4">
+        <!-- Brand -->
+        <div class="flex items-center gap-3 px-2 py-2">
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-lg size-10 border border-border-dark bg-surface-dark flex items-center justify-center text-primary"
+            data-alt="Cypherstudios Logo Abstract"
+          >
+            <span class="material-symbols-outlined text-2xl">terminal</span>
+          </div>
+          <div class="flex flex-col">
+            <h1
+              class="text-white text-base font-bold leading-none tracking-tight"
+            >
+              Cypherstudios
+            </h1>
+            <p class="text-slate-400 text-xs font-mono mt-1">v2.4.0-admin</p>
+          </div>
+        </div>
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-2 mt-4">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >grid_view</span
+            >
+            <span class="text-sm font-medium">Dashboard</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-dark border border-border-dark text-white shadow-sm shadow-primary/5"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-primary"
+              >calendar_month</span
+            >
+            <span class="text-sm font-medium">Citas</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >group</span
+            >
+            <span class="text-sm font-medium">Clientes</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+              >settings</span
+            >
+            <span class="text-sm font-medium">Configuración</span>
+          </a>
+        </nav>
+      </div>
+      <div class="p-4 border-t border-border-dark">
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-surface-dark transition-colors group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors"
+            >help</span
+          >
+          <span class="text-sm font-medium">Ayuda &amp; Soporte</span>
+        </a>
+        <div
+          class="mt-4 flex items-center gap-3 px-3 py-3 rounded-lg bg-surface-dark/50 border border-border-dark"
+        >
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-full size-8"
+            data-alt="User Avatar"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuC4YxBXyCe7e9eXix7FzLIR0xb9P8ZIP83Yea4b1TAyQ4txhtXLbH4nMjELoEYpY0zLCpTj_cQNXF-bGfbZwG_k122DLRJRdW_xtdG5W6jicak_IUicvUcB4AMjdzaNh9JdpXJZtK3q0iSo45PAnKbmJ2lM-coAexMQjMR7I9RULZiXu73yzJpXT924N-6f00Wv5NUDZD8JkvKJgkBKgBt7Oe3bYjNPO50AIw--Igu8Si9BTPeZGX5LKaZgcYACQVjllfbjRzlciEo&quot;);
+            "
+          ></div>
+          <div class="flex flex-col overflow-hidden">
+            <p class="text-white text-xs font-bold truncate">Admin User</p>
+            <p class="text-slate-400 text-[10px] font-mono truncate">
+              sysadmin@cypher.io
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main
+      class="flex-1 lg:ml-64 relative flex flex-col h-screen overflow-hidden"
+    >
+      <!-- Header Section -->
+      <header
+        class="flex-shrink-0 px-6 py-6 border-b border-border-dark bg-background-dark z-10"
+      >
+        <div class="flex flex-wrap justify-between items-end gap-4">
+          <div class="flex flex-col gap-1">
+            <div
+              class="flex items-center gap-2 text-primary font-mono text-xs tracking-wider uppercase mb-1"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-primary animate-pulse"
+              ></span>
+              Sistema Online
+            </div>
+            <h2
+              class="text-white text-3xl font-black tracking-tight font-display"
+            >
+              Agenda Diaria
+            </h2>
+            <p class="text-slate-400 text-sm font-normal">
+              Viernes, 24 de Noviembre, 2023
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              class="flex items-center justify-center gap-2 h-10 px-4 rounded-lg border border-border-dark bg-surface-dark text-slate-300 hover:text-white hover:border-primary/50 transition-all text-sm font-medium"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >chevron_left</span
+              >
+              <span class="hidden sm:inline">Anterior</span>
+            </button>
+            <button
+              class="flex items-center justify-center gap-2 h-10 px-4 rounded-lg border border-border-dark bg-surface-dark text-slate-300 hover:text-white hover:border-primary/50 transition-all text-sm font-medium"
+            >
+              <span class="hidden sm:inline">Siguiente</span>
+              <span class="material-symbols-outlined text-[18px]"
+                >chevron_right</span
+              >
+            </button>
+            <div class="w-px h-8 bg-border-dark mx-1"></div>
+            <button
+              class="flex cursor-pointer items-center justify-center gap-2 h-10 px-5 rounded-lg bg-primary text-background-dark text-sm font-bold shadow-[0_0_15px_rgba(56,255,119,0.2)] hover:shadow-[0_0_20px_rgba(56,255,119,0.4)] hover:brightness-110 transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]">add</span>
+              <span class="truncate">Nueva Cita</span>
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- Scrollable Content -->
+      <div class="flex-1 overflow-y-auto p-6 scroll-smooth">
+        <!-- Highlighted/Active Slot Card -->
+        <div class="mb-8 @container">
+          <div
+            class="relative overflow-hidden rounded-xl border border-primary/30 bg-surface-dark p-6 shadow-lg shadow-black/20"
+          >
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+              <span class="material-symbols-outlined text-9xl text-primary"
+                >schedule</span
+              >
+            </div>
+            <div
+              class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+            >
+              <div class="flex gap-4 items-start">
+                <div
+                  class="flex-shrink-0 flex flex-col items-center justify-center size-14 rounded-lg bg-primary/10 border border-primary/20 text-primary"
+                >
+                  <span class="text-xs font-mono uppercase">Hora</span>
+                  <span class="text-xl font-bold">09:00</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span
+                      class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                      >Técnica</span
+                    >
+                    <span
+                      class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30"
+                      >Confirmada</span
+                    >
+                  </div>
+                  <h3 class="text-white text-lg font-bold leading-tight">
+                    Revisión Técnica de Servidores
+                  </h3>
+                  <p class="text-slate-400 text-sm mt-1 font-mono">
+                    Cliente: TechCorp • Sala A • ID: #9923
+                  </p>
+                </div>
+              </div>
+              <div class="flex w-full md:w-auto gap-3">
+                <button
+                  class="flex-1 md:flex-none h-10 px-4 rounded-lg border border-border-dark bg-transparent text-slate-300 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                >
+                  Detalles
+                </button>
+                <button
+                  class="flex-1 md:flex-none h-10 px-4 rounded-lg bg-primary/90 text-background-dark hover:bg-primary transition-colors text-sm font-bold flex items-center justify-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >edit</span
+                  >
+                  Editar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Timeline View -->
+        <div
+          class="grid grid-cols-[60px_1fr] md:grid-cols-[80px_1fr] gap-x-6 relative"
+        >
+          <!-- Vertical Line -->
+          <div
+            class="absolute left-[29px] md:left-[39px] top-4 bottom-4 w-px bg-border-dark z-0"
+          ></div>
+          <!-- 08:00 Slot (Free) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-slate-500 font-mono text-sm">08:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full border-2 border-slate-600 bg-background-dark group-hover:border-primary transition-colors"
+              ></div>
+              <div
+                class="rounded-lg border border-border-dark border-dashed bg-background-dark/50 p-4 hover:bg-surface-dark hover:border-slate-600 transition-all cursor-pointer flex items-center justify-between group-hover:shadow-md"
+              >
+                <div>
+                  <p class="text-slate-400 text-sm font-medium">
+                    Espacio Disponible
+                  </p>
+                  <p class="text-slate-600 text-xs mt-1">60 min</p>
+                </div>
+                <button
+                  class="opacity-0 group-hover:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined">add_circle</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 09:00 Slot (Occupied - Active) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-white font-mono text-sm font-bold">09:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full bg-primary shadow-[0_0_10px_rgba(56,255,119,0.6)]"
+              ></div>
+              <div
+                class="rounded-lg border-l-4 border-l-primary border-y border-r border-y-border-dark border-r-border-dark bg-surface-dark p-4 hover:border-r-primary/50 transition-all cursor-pointer shadow-lg shadow-black/20"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h4 class="text-white text-base font-bold">
+                      Revisión Técnica
+                    </h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >apartment</span
+                        >
+                        TechCorp
+                      </div>
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >location_on</span
+                        >
+                        Sala A
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-primary/10 text-primary text-xs font-mono px-2 py-1 rounded"
+                  >
+                    60m
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 10:00 Slot (Free) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-slate-500 font-mono text-sm">10:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full border-2 border-slate-600 bg-background-dark group-hover:border-primary transition-colors"
+              ></div>
+              <div
+                class="rounded-lg border border-border-dark border-dashed bg-background-dark/50 p-4 hover:bg-surface-dark hover:border-slate-600 transition-all cursor-pointer flex items-center justify-between group-hover:shadow-md"
+              >
+                <div>
+                  <p class="text-slate-400 text-sm font-medium">
+                    Espacio Disponible
+                  </p>
+                  <p class="text-slate-600 text-xs mt-1">60 min</p>
+                </div>
+                <button
+                  class="opacity-0 group-hover:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined">add_circle</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 11:00 Slot (Occupied) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-slate-300 font-mono text-sm">11:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full border-2 border-orange-400 bg-background-dark"
+              ></div>
+              <div
+                class="rounded-lg border-l-4 border-l-orange-400 border-y border-r border-y-border-dark border-r-border-dark bg-surface-dark/60 p-4 hover:bg-surface-dark transition-all cursor-pointer opacity-90 hover:opacity-100"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h4 class="text-white text-base font-bold">
+                      Mantenimiento Servidores
+                    </h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >dns</span
+                        >
+                        Internal Ops
+                      </div>
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >location_on</span
+                        >
+                        Sala B
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-orange-400/10 text-orange-400 text-xs font-mono px-2 py-1 rounded"
+                  >
+                    En Progreso
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 12:00 Slot (Free) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-slate-500 font-mono text-sm">12:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full border-2 border-slate-600 bg-background-dark group-hover:border-primary transition-colors"
+              ></div>
+              <div
+                class="rounded-lg border border-border-dark border-dashed bg-background-dark/50 p-4 hover:bg-surface-dark hover:border-slate-600 transition-all cursor-pointer flex items-center justify-between group-hover:shadow-md"
+              >
+                <div>
+                  <p class="text-slate-400 text-sm font-medium">
+                    Espacio Disponible
+                  </p>
+                  <p class="text-slate-600 text-xs mt-1">60 min</p>
+                </div>
+                <button
+                  class="opacity-0 group-hover:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined">add_circle</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 13:00 Slot (Occupied) -->
+          <div class="flex flex-col items-end pt-2 relative z-10">
+            <span class="text-slate-300 font-mono text-sm">13:00</span>
+          </div>
+          <div class="pb-8 group">
+            <div class="relative pl-8">
+              <div
+                class="absolute left-[-35px] md:left-[-45px] top-3 size-3 rounded-full border-2 border-purple-400 bg-background-dark"
+              ></div>
+              <div
+                class="rounded-lg border-l-4 border-l-purple-400 border-y border-r border-y-border-dark border-r-border-dark bg-surface-dark/60 p-4 hover:bg-surface-dark transition-all cursor-pointer opacity-90 hover:opacity-100"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h4 class="text-white text-base font-bold">
+                      Consultoría Seguridad
+                    </h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >shield</span
+                        >
+                        SecuriLtd
+                      </div>
+                      <div
+                        class="flex items-center gap-1 text-slate-400 text-xs"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >laptop</span
+                        >
+                        Remoto
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-purple-400/10 text-purple-400 text-xs font-mono px-2 py-1 rounded"
+                  >
+                    Pendiente
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 14:00 End Indicator -->
+          <div class="flex flex-col items-end pt-0 relative z-10">
+            <span class="text-slate-600 font-mono text-xs">14:00</span>
+          </div>
+          <div class="pb-8 pl-8 flex items-center">
+            <div class="h-px bg-border-dark w-full"></div>
+          </div>
+        </div>
+        <!-- Quick Stats / Table Summary -->
+        <div class="mt-8">
+          <h3 class="text-white font-bold text-lg mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary"
+              >table_rows</span
+            >
+            Resumen del Día
+          </h3>
+          <div
+            class="overflow-hidden rounded-xl border border-border-dark bg-surface-dark shadow-sm"
+          >
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm text-slate-400">
+                <thead
+                  class="bg-background-dark text-xs uppercase font-medium text-slate-300 font-mono"
+                >
+                  <tr>
+                    <th class="px-6 py-4" scope="col">Hora</th>
+                    <th class="px-6 py-4" scope="col">Cliente</th>
+                    <th class="px-6 py-4" scope="col">Tipo</th>
+                    <th class="px-6 py-4 text-center" scope="col">Estado</th>
+                    <th class="px-6 py-4 text-right" scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-border-dark">
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="px-6 py-4 font-mono text-white">09:00</td>
+                    <td class="px-6 py-4 text-white font-medium">TechCorp</td>
+                    <td class="px-6 py-4">Revisión Técnica</td>
+                    <td class="px-6 py-4 text-center">
+                      <span
+                        class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary border border-primary/20"
+                      >
+                        Confirmado
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <button
+                        class="text-slate-400 hover:text-white transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="px-6 py-4 font-mono text-white">11:00</td>
+                    <td class="px-6 py-4 text-white font-medium">
+                      Internal Ops
+                    </td>
+                    <td class="px-6 py-4">Mantenimiento</td>
+                    <td class="px-6 py-4 text-center">
+                      <span
+                        class="inline-flex items-center rounded-full bg-orange-400/10 px-2.5 py-0.5 text-xs font-medium text-orange-400 border border-orange-400/20"
+                      >
+                        En Progreso
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <button
+                        class="text-slate-400 hover:text-white transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-white/5 transition-colors">
+                    <td class="px-6 py-4 font-mono text-white">13:00</td>
+                    <td class="px-6 py-4 text-white font-medium">SecuriLtd</td>
+                    <td class="px-6 py-4">Consultoría</td>
+                    <td class="px-6 py-4 text-center">
+                      <span
+                        class="inline-flex items-center rounded-full bg-purple-400/10 px-2.5 py-0.5 text-xs font-medium text-purple-400 border border-purple-400/20"
+                      >
+                        Pendiente
+                      </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <button
+                        class="text-slate-400 hover:text-white transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

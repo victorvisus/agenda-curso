@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acceso Administrador Cypherstudios</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#3AFF7A",
+                "background-light": "#f5f8f6",
+                "background-dark": "#0E0E11",
+                "card-bg": "#1C1E22",
+                "card-border": "#3A3D42",
+                "tech-gray": "#B5B8BE",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"],
+                "mono": ["JetBrains Mono", "monospace"],
+                "body": ["Source Sans 3", "sans-serif"],
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-6">
+<div class="relative flex h-full w-full flex-col items-center justify-center">
+<div class="w-full max-w-[440px] bg-card-bg border border-card-border rounded-xl shadow-2xl p-8 md:p-10 flex flex-col gap-8">
+<div class="flex flex-col items-center gap-6">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-10">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_logo)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_logo"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h1 class="text-white text-2xl font-bold tracking-tight uppercase">Cypherstudios</h1>
+</div>
+<div class="text-center">
+<h2 class="text-white text-xl font-semibold leading-tight mb-2">Acceso Administrador</h2>
+<p class="text-tech-gray text-sm font-normal">Internal login for Cypherstudios admin</p>
+</div>
+</div>
+<form class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-slate-100 text-sm font-semibold font-display tracking-wide">
+                        Email de usuario
+                    </label>
+<input class="form-input w-full bg-background-dark border border-card-border rounded-lg text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary h-12 px-4 font-body placeholder:text-slate-500 transition-colors" placeholder="ejemplo@cypherstudios.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="text-slate-100 text-sm font-semibold font-display tracking-wide">
+                            Contraseña
+                        </label>
+</div>
+<div class="relative flex items-center">
+<input class="form-input w-full bg-background-dark border border-card-border rounded-lg text-slate-100 focus:ring-1 focus:ring-primary focus:border-primary h-12 pl-4 pr-12 font-body placeholder:text-slate-500 transition-colors" placeholder="••••••••" type="password"/>
+<button class="absolute right-3 text-slate-500 hover:text-primary transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 mt-2">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-lg transition-all duration-200 shadow-lg shadow-primary/10 active:scale-[0.98]" type="submit">
+                        Acceder al Sistema
+                    </button>
+<div class="text-center">
+<a class="text-tech-gray hover:text-primary text-xs font-mono transition-colors tracking-tight" href="#">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+</div>
+</div>
+</form>
+<div class="pt-4 border-t border-card-border/50 flex justify-center">
+<div class="flex items-center gap-2">
+<div class="size-2 rounded-full bg-primary/40"></div>
+<span class="text-[10px] text-tech-gray font-mono uppercase tracking-[0.2em]">Secure Terminal Connection</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-col items-center gap-1 opacity-40">
+<p class="text-[10px] font-mono text-tech-gray">© 2024 CYPHERSTUDIOS GLOBAL SYSTEMS</p>
+<p class="text-[10px] font-mono text-tech-gray uppercase tracking-widest">Unauthorized access is strictly prohibited</p>
+</div>
+</div>
+
+```</body></html>

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cypherstudios - Agenda Diaria</title>
+    <meta name="description" content="Cypherstudios - Agenda Diaria" />
+    <meta name="author" content="Cypherstudios" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- noindex, nofollow, evita la indexación en buscadores -->
+
+    <meta name="theme-color" content="#0E0E11" />
+    <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#3AFF7A", // Cryptic green
+              "primary-hover": "#2ED665", // Cryptic green hover
+              "background-dark": "#0E0E11", //negro carbón
+              "surface-dark": "#1C1E22", //gris antracita
+              "surface-hover": "#3a3d42", //gris acero
+              "text-primary": "#f2f3f5", //blanco tecnico
+              "text-secondary": "#94A3B8", //gris tecnico mod
+              "border-dark": "#2D3139", //gris antracita mod
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              body: ["Source Sans 3", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="./css/formateo.css" /> -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body
+    id="dayli-appointments-page"
+    class="page flex bg-background-dark text-primary font-body overflow-hidden min-h-screen"
+  >
+    <aside
+      class="w-64 border-r border-border-dark bg-surface-dark flex flex-col flex-shrink-0 h-screen sticky top-0"
+    >
+      <div
+        class="p-4 flex items-center gap-3 border-b border-border-dark/50 justify-end"
+      >
+        <div class="mx-auto my-4 text-right" role="group">
+          <img
+            src="./img/Cypher_logotipo-mono-negativo.png"
+            alt="Cypherstudios Logo"
+            class=""
+          />
+
+          <span class="font-mono text-xs text-primary mr-3"
+            >v1.0.0-internal</span
+          >
+        </div>
+      </div>
+      <nav
+        class="menu-nav border-b border-border-dark flex-1 px-4 py-6 flex flex-col gap-2"
+      >
+        <a
+          class="item-menu flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-hover hover:text-white transition-colors group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:scale-110 transition-transform"
+            >calendar_month</span
+          >
+
+          <span class="text-sm font-medium font-display">Calendario</span>
+        </a>
+        <a
+          class="item-menu current flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-surface-hover hover:text-white transition-colors group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:scale-110 transition-transform"
+            >view_day</span
+          >
+          <span class="text-sm font-medium font-display">Vista día</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main
+      id="main"
+      class="site-main flex-1 relative flex flex-col h-screen overflow-hidden"
+    >
+      <header
+        class="border-b border-border-dark p-6 flex flex-wrap justify-between items-end gap-4"
+        role="banner"
+      >
+        <div class="flex flex-col gap-1" role="heading">
+          <div
+            class="flex items-center gap-2 text-primary font-mono text-xs tracking-wider uppercase mb-1"
+          >
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            Sistema Online
+          </div>
+          <h2
+            class="text-white text-3xl font-black tracking-tight font-display"
+          >
+            Agenda Diaria
+          </h2>
+          <p
+            id="fecha-display"
+            class="text-slate-400 text-sm font-normal"
+            role="timer"
+          >
+            Viernes, 27 de Febrero, 2026
+          </p>
+        </div>
+        <nav class="action-nav flex items-center gap-3">
+          <button
+            id="btn-prev-day"
+            class="button-nav flex items-center justify-center gap-2 h-10 px-4 rounded-lg border border-border-dark bg-surface-dark text-slate-300 hover:text-white hover:border-primary/50 transition-all text-sm font-medium"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >chevron_left</span
+            >
+            <span class="hidden sm:inline">Anterior</span>
+          </button>
+          <button
+            id="btn-next-day"
+            class="button-nav flex items-center justify-center gap-2 h-10 px-4 rounded-lg border border-border-dark bg-surface-dark text-slate-300 hover:text-white hover:border-primary/50 transition-all text-sm font-medium"
+          >
+            <span class="hidden sm:inline">Siguiente</span>
+            <span class="material-symbols-outlined text-[18px]"
+              >chevron_right</span
+            >
+          </button>
+          <div class="w-px h-8 bg-border-dark mx-1"></div>
+          <button
+            id="btn-new-appointment"
+            class="button-nav flex cursor-pointer items-center justify-center gap-2 h-10 px-5 rounded-lg bg-primary text-background-dark text-sm font-bold shadow-[0_0_15px_rgba(56,255,119,0.2)] hover:shadow-[0_0_20px_rgba(56,255,119,0.4)] hover:bg-primary-hover hover:brightness-110 transition-all"
+          >
+            <span class="material-symbols-outlined text-[20px]">add</span>
+            <span class="truncate">Nueva Cita</span>
+          </button>
+        </nav>
+      </header>
+      <!-- appointments-day-container -->
+      <section
+        id="appointments-day-container-id"
+        class="appointments-day-container p-6"
+        role="region"
+        aria-label="Lista de citas del día"
+        aria-roledescription="Grupos de citas del dia"
+      >
+        <!-- Cita 1 - avaible -->
+        <!-- appointment-card-group -->
+        <div
+          id="appointment-yymmddhhmm-randomid"
+          class="available appointment-card-group flex gap-3 mb-3"
+          aria-roledescription="Detalles generales de la cita"
+          role="group"
+        >
+          <!-- appointment-card-hour -->
+          <div
+            class="appointment-card-hour transition-colors cursor-pointer rounded-lg p-4 mr-6"
+            aria-roledescription="Hora inicial de la cita"
+            role="group"
+          >
+            <p class="flex items-center gap-3 mb-3">
+              <span
+                class="material-symbols-outlined text-slate-500 text-[18px]"
+                role="img"
+                >nest_clock_farsight_analog</span
+              >
+              <span
+                class="appointment-hour text-slate-500 font-mono text-sm font-medium"
+                role="timer"
+                >08:00h</span
+              >
+            </p>
+          </div>
+          <!-- appointment-card-content -->
+          <div
+            class="appointment-card-content group p-3 rounded-lg border-l border-y border-r border-l-border-dark border-y-border-dark border-r-border-dark hover:bg-surface-dark transition-colors cursor-pointer flex flex-row basis-full items-center gap-x-3 gap-y-1 mb-3"
+            aria-roledescription="Descripción de la cita"
+            role="group"
+          >
+            <!-- appointment-card-content-inner -->
+            <div
+              class="appointment-card-content-inner flex flex-col"
+              aria-roledescription="Nombre y servicio contratado"
+              role="group"
+            >
+              <h3
+                class="appointment-name text-base font-semibold text-slate-400"
+                aria-roledescription="Nombre y apellidos del cliente"
+              >
+                Espacio disponible
+              </h3>
+              <p
+                class="appointment-service text-slate-500 text-xs flex items-center gap-3"
+                aria-roledescription="Servicio contratado por el cliente"
+              >
+                <span
+                  class="material-symbols-outlined text-2xl text-slate-500"
+                  role="img"
+                  >event_available</span
+                >
+                <span
+                  class="appointment-service-name text-slate-500 font-mono text-sm font-medium"
+                  role="text"
+                  >60 min</span
+                >
+              </p>
+            </div>
+            <!-- appointment-card-content-action -->
+            <div
+              class="appointment-card-content-action flex flex-row items-center gap-2 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-roledescription="Acciones disponibles para la cita"
+              role="toolbar"
+            >
+              <!-- appointement-edit-btn -->
+              <button class="appointement-edit-btn" aria-label="Editar cita">
+                <span class="material-symbols-outlined text-primary"
+                  >change_circle</span
+                >
+              </button>
+              <!-- appointement-add-btn : En citas disponibles se muestra este botón -->
+              <button class="appointement-add-btn" aria-label="Añadir cita">
+                <span class="material-symbols-outlined text-primary"
+                  >add_circle</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cita 2 Locked -->
+        <!-- appointment-card-group -->
+        <div
+          id="appointment-yymmddhhmm-randomid2"
+          class="locked appointment-card-group flex gap-3 mb-3"
+          aria-roledescription="Detalles generales de la cita"
+          role="group"
+        >
+          <!-- appointment-card-hour -->
+          <div
+            class="appointment-card-hour transition-colors cursor-pointer rounded-lg p-4 mr-6"
+            aria-roledescription="Hora inicial de la cita"
+            role="group"
+          >
+            <p class="flex items-center gap-3 mb-3">
+              <span
+                class="material-symbols-outlined text-primary text-[18px]"
+                role="img"
+                >nest_clock_farsight_analog</span
+              >
+              <span
+                class="appointment-hour text-slate-500 font-mono text-sm font-medium"
+                role="timer"
+                >09:00h</span
+              >
+            </p>
+          </div>
+          <!-- appointment-card-content -->
+          <div
+            class="appointment-card-content group bg-surface-dark p-3 rounded-lg border-l-4 border-l-primary border-y border-r border-y-border-dark border-r-border-dark hover:border-primary transition-colors cursor-pointer flex flex-row basis-full items-center gap-x-3 gap-y-1 mb-3"
+            aria-roledescription="Descripción de la cita"
+            role="group"
+          >
+            <!-- appointment-card-content-inner -->
+            <div
+              class="appointment-card-content-inner flex flex-col"
+              aria-roledescription="Nombre y servicio contratado"
+              role="group"
+            >
+              <h3
+                class="appointment-name text-base font-semibold text-white"
+                aria-roledescription="Nombre y apellidos del cliente"
+              >
+                Nombre y Apellidos del cliente
+              </h3>
+              <p
+                class="appointment-service text-slate-500 text-xs flex items-center gap-3"
+                aria-roledescription="Servicio contratado por el cliente"
+              >
+                <span
+                  class="material-symbols-outlined text-2xl text-slate-500"
+                  role="img"
+                  >terminal</span
+                >
+                <span
+                  class="appointment-service-name text-slate-500 font-mono text-sm font-medium"
+                  role="text"
+                  >Desarrollo web</span
+                >
+              </p>
+            </div>
+            <!-- appointment-card-content-action -->
+            <div
+              class="appointment-card-content-action flex flex-row items-center gap-2 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-roledescription="Acciones disponibles para la cita"
+              role="toolbar"
+            >
+              <!-- appointement-edit-btn -->
+              <button class="appointement-edit-btn" aria-label="Editar cita">
+                <span class="material-symbols-outlined text-primary"
+                  >change_circle</span
+                >
+              </button>
+              <!-- appointement-delete-btn : En citas bloqueadas se muestra este botón -->
+              <button
+                class="appointement-delete-btn"
+                aria-label="Eliminar cita"
+              >
+                <span class="material-symbols-outlined text-primary"
+                  >delete</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- type="module" le dice al navegador: "Este es un módulo ES6, permite import/export".-->
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>

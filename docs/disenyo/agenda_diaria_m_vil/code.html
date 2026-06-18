@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vista Diaria</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38ff77",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0f2315",
+                        "surface-dark": "#182e21",
+                        "border-dark": "#273a2d",
+                        "text-main": "#e2e8f0",
+                        "text-muted": "#9abca5",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-text-main h-screen flex flex-col overflow-hidden selection:bg-primary selection:text-background-dark">
+<!-- Top Header -->
+<header class="flex items-center justify-between border-b border-border-dark px-4 py-4 bg-background-dark sticky top-0 z-20">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center rounded-lg bg-primary/10">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-white">Vista Diaria</h1>
+</div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-lg bg-surface-dark text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-lg bg-surface-dark text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Calendar Strip -->
+<div class="flex flex-col border-b border-border-dark bg-background-dark z-10 shadow-lg shadow-black/20">
+<!-- Month Navigation -->
+<div class="flex items-center justify-between px-4 py-3">
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<h2 class="text-base font-bold text-white tracking-wide">October 2023</h2>
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Days Grid -->
+<div class="w-full overflow-x-auto scrollbar-hide pb-4 px-2">
+<div class="flex justify-between min-w-full gap-1">
+<!-- Day Header Row -->
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">S</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">1</button>
+</div>
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">M</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">2</button>
+</div>
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">T</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">3</button>
+</div>
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">W</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">4</button>
+</div>
+<!-- Active Day -->
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0">
+<span class="text-[11px] font-bold uppercase tracking-wider text-primary">T</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm font-bold bg-primary text-background-dark shadow-[0_0_15px_rgba(56,255,119,0.4)]">5</button>
+</div>
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">F</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">6</button>
+</div>
+<div class="flex flex-col items-center gap-1 w-11 flex-shrink-0 opacity-60">
+<span class="text-[11px] font-bold uppercase tracking-wider text-text-muted">S</span>
+<button class="size-9 rounded-full flex items-center justify-center text-sm text-text-muted hover:bg-surface-dark transition-colors">7</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Content -->
+<main class="flex-1 overflow-y-auto relative bg-background-dark" id="timeline-container">
+<div class="relative min-h-full py-6 px-4">
+<!-- Current Time Indicator (Absolute positioned for demo) -->
+<div class="absolute left-14 right-4 top-[340px] z-10 flex items-center pointer-events-none">
+<div class="h-2.5 w-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(56,255,119,0.8)]"></div>
+<div class="h-[2px] flex-1 bg-primary/50 shadow-[0_0_8px_rgba(56,255,119,0.4)]"></div>
+</div>
+<!-- Timeline Grid -->
+<div class="flex flex-col gap-6">
+<!-- 08:00 Slot (Empty) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-text-muted">08:00</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-border-dark group-hover:border-primary/30 transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-border-dark group-hover:bg-primary/50 transition-colors"></div>
+<div class="h-full rounded-lg border border-dashed border-border-dark/50 p-3 flex items-center justify-center text-text-muted/40 text-sm italic">
+                            Available
+                        </div>
+</div>
+</div>
+<!-- 09:00 Slot (Occupied) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-white">09:00</span>
+<span class="text-xs text-text-muted">1h</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-primary transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-primary shadow-[0_0_8px_rgba(56,255,119,0.6)]"></div>
+<div class="relative h-full overflow-hidden rounded-lg bg-surface-dark border-l-4 border-l-primary p-4 shadow-sm transition-all hover:bg-[#1f382a] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-base">Project Alpha Sync</h3>
+<span class="material-symbols-outlined text-primary text-lg">videocam</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted text-sm mb-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Cypher Room A</span>
+</div>
+<div class="flex -space-x-2 overflow-hidden mt-2">
+<img alt="Team member face" class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-dark object-cover" data-alt="Avatar of team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiQ7x1zqjt0tSoRdjDftmqffNPU8sIAZ8irxkGx7IOhV2Hq_aCO6UpX4HIR_S2CaNSbxv7EikPQfLXoi_rIa3bURZiswU8yKMxOK2foqFiyEtZuYy6ivi5xSwHEknkGRqcPYD9hQ_RrXSNAOTwBhpvLT_3y-A2V6MOXTettyEADVolN6yX8Uq5vew_gGTVXgRyAwyid3kalvTJkhs1AYRHFXY7kCCNdGfoNLpATkpopC1dhAGgVYIZn-2xbXUA7Lz3kTGCKeTM230"/>
+<img alt="Team member face" class="inline-block h-6 w-6 rounded-full ring-2 ring-surface-dark object-cover" data-alt="Avatar of team member" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp_DYzRVbAkDeYidUDM7KMn83HK6PVfwuA-olyH0QdQsLclUr90_apEUZjjVyn2OwnNqFLG9-3oz8nwsBt-syiJzdPHeXYH7TRlDQVWzulrH5xqIhIfR_g2UpMfiSSiTnE-1TKDwJ-_ZWgOMNUdBhcLMqnWCiEyZFAW3_5f7lnTvHBwfvXzeJCpffw72q4Z2KEY-RIscRljBFAeqR9G2GQwxk5vz9IhkwPcqXgB4aDIUNlJjrTxcyIvfan6SfvLVRLPtHJeXgXmcs"/>
+<div class="h-6 w-6 rounded-full ring-2 ring-surface-dark bg-border-dark flex items-center justify-center text-[10px] text-white font-medium">+2</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 10:00 Slot (Empty) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-text-muted">10:00</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-border-dark group-hover:border-primary/30 transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-border-dark group-hover:bg-primary/50 transition-colors"></div>
+<div class="h-full rounded-lg border border-dashed border-border-dark/50 p-3 flex items-center justify-center text-text-muted/40 text-sm italic">
+                            Available
+                        </div>
+</div>
+</div>
+<!-- 11:00 Slot (Occupied) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-white">11:00</span>
+<span class="text-xs text-text-muted">45m</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-primary transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-primary shadow-[0_0_8px_rgba(56,255,119,0.6)]"></div>
+<div class="relative h-full overflow-hidden rounded-lg bg-surface-dark border-l-4 border-l-primary p-4 shadow-sm transition-all hover:bg-[#1f382a] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-base">Client Meeting: Neo</h3>
+<span class="material-symbols-outlined text-primary text-lg">laptop_chromebook</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted text-sm">
+<span class="material-symbols-outlined text-sm">public</span>
+<span>Online / Zoom</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 12:00 Slot (Break) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-white">12:00</span>
+<span class="text-xs text-text-muted">1h</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-border-dark group-hover:border-primary/30 transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-border-dark group-hover:bg-primary/50 transition-colors"></div>
+<div class="relative h-full rounded-lg bg-surface-dark/50 border border-border-dark p-3 flex items-center gap-3">
+<div class="p-2 rounded-md bg-border-dark text-text-muted">
+<span class="material-symbols-outlined text-lg">coffee</span>
+</div>
+<div>
+<h3 class="font-medium text-text-muted text-sm">Lunch Break</h3>
+<p class="text-xs text-text-muted/60">No disturbances</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 13:00 Slot (Occupied) -->
+<div class="group flex gap-4">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-white">13:00</span>
+<span class="text-xs text-text-muted">1h</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-primary transition-colors pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-primary shadow-[0_0_8px_rgba(56,255,119,0.6)]"></div>
+<div class="relative h-full overflow-hidden rounded-lg bg-surface-dark border-l-4 border-l-primary p-4 shadow-sm transition-all hover:bg-[#1f382a] cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-white text-base">Code Review</h3>
+<span class="material-symbols-outlined text-primary text-lg">code</span>
+</div>
+<div class="flex items-center gap-2 text-text-muted text-sm">
+<span class="material-symbols-outlined text-sm">group</span>
+<span>Dev Team</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 14:00 End Marker -->
+<div class="group flex gap-4 opacity-50">
+<div class="w-12 pt-1 flex flex-col items-end">
+<span class="text-sm font-medium text-text-muted">14:00</span>
+</div>
+<div class="flex-1 relative pl-4 border-l border-border-dark pb-8">
+<div class="absolute -left-[5px] top-[7px] h-2.5 w-2.5 rounded-full border-2 border-background-dark bg-border-dark"></div>
+<div class="h-[1px] w-full bg-border-dark mt-3"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer for FAB -->
+<div class="h-24"></div>
+</div>
+</main>
+<!-- FAB -->
+<div class="absolute bottom-6 right-6 z-30">
+<button class="group flex h-14 w-14 items-center justify-center rounded-full bg-primary text-background-dark shadow-[0_4px_20px_rgba(56,255,119,0.4)] transition-transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-primary/30">
+<span class="material-symbols-outlined text-3xl font-bold group-hover:rotate-90 transition-transform duration-300">add</span>
+</button>
+</div>
+</body></html>

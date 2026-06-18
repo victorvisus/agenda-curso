@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cypherstudios - Nueva Cita</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#38ff77",
+                        "primary-dark": "#2ecf60",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#101813",
+                        "surface-dark": "#1a261e",
+                        "surface-border": "#273a2d",
+                        "text-secondary": "#9abca5",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-dark text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-surface-border bg-background-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-2xl">diamond</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">Cypherstudios</h2>
+</div>
+<div class="hidden md:flex w-64 items-center bg-surface-dark rounded-lg px-3 py-2 border border-surface-border focus-within:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="bg-transparent border-none text-sm text-white placeholder-text-secondary focus:ring-0 w-full ml-2" placeholder="Buscar..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-white text-sm font-medium hover:text-primary transition-colors" href="#">Agenda</a>
+<a class="text-text-secondary text-sm font-medium hover:text-white transition-colors" href="#">Clientes</a>
+<a class="text-text-secondary text-sm font-medium hover:text-white transition-colors" href="#">Servicios</a>
+<a class="text-text-secondary text-sm font-medium hover:text-white transition-colors" href="#">Ajustes</a>
+</nav>
+<div class="flex items-center gap-3 border-l border-surface-border pl-6">
+<button class="flex items-center justify-center size-9 rounded-full bg-surface-dark hover:bg-surface-border text-white transition-colors relative">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border border-surface-dark"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border border-surface-border" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4Pd5mvHbHLk5E34i9otX0Zh2bD8Y1i9ZWcZPhCMEZqTHBAtq12bOWD014hiRxIqVJgUhVUXivzGJg6uu2ASoPfJsl9KLM4CauB_EVrbugTLtVfUE_57LqsJrlkPwY8c4e2ZDD-eUGcLO4qpi3pkijwUeHgdQTWnrBzJjViVTtOO7_GOj2SCbmQbbhS_uwgzTjwmnhWqnlIWlszv5XzNVYa91UMJv_TVgj6GO5Fxkg3b0j5S4wEJr1wn8ebfLNS2P-E4Abia0imQc");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Sidebar (Calendar/Date Picker) -->
+<aside aria-hidden="true" class="w-64 bg-background-dark border-r border-surface-border flex flex-col p-4 shrink-0 hidden md:flex opacity-50 pointer-events-none">
+<div class="mb-6">
+<h3 class="text-white font-semibold text-lg mb-4 pl-2">Octubre 2023</h3>
+<div class="grid grid-cols-7 gap-1 text-center text-xs text-text-secondary mb-2">
+<span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center text-sm text-white">
+<span class="p-2 text-text-secondary/50">28</span>
+<span class="p-2 text-text-secondary/50">29</span>
+<span class="p-2 text-text-secondary/50">30</span>
+<span class="p-2 rounded hover:bg-surface-border cursor-pointer">1</span>
+<span class="p-2 rounded hover:bg-surface-border cursor-pointer">2</span>
+<span class="p-2 rounded bg-primary text-background-dark font-bold">3</span>
+<span class="p-2 rounded hover:bg-surface-border cursor-pointer">4</span>
+<!-- More days... -->
+</div>
+</div>
+<div class="mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-surface-dark/50 border border-surface-border">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+</div>
+<div>
+<p class="text-xs text-text-secondary">Soporte Técnico</p>
+<p class="text-sm font-medium text-white">Online</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Agenda View (Dimmed Background) -->
+<main aria-hidden="true" class="flex-1 overflow-y-auto bg-background-dark p-6 opacity-30 pointer-events-none select-none relative">
+<div class="flex justify-between items-center mb-6">
+<h1 class="text-2xl font-bold text-white">Martes, 3 Octubre</h1>
+<div class="flex gap-2">
+<button class="bg-surface-dark border border-surface-border text-white px-3 py-1.5 rounded text-sm hover:bg-surface-border">Día</button>
+<button class="bg-transparent text-text-secondary px-3 py-1.5 rounded text-sm hover:text-white">Semana</button>
+<button class="bg-transparent text-text-secondary px-3 py-1.5 rounded text-sm hover:text-white">Mes</button>
+</div>
+</div>
+<!-- Timeline Grid -->
+<div class="relative grid grid-cols-[60px_1fr] gap-4">
+<!-- Time Column -->
+<div class="flex flex-col gap-12 text-right text-sm text-text-secondary pt-2">
+<span>09:00</span>
+<span>10:00</span>
+<span>11:00</span>
+<span>12:00</span>
+<span>13:00</span>
+<span>14:00</span>
+</div>
+<!-- Appointments Column -->
+<div class="relative min-h-[600px] border-l border-surface-border/30 pl-4 space-y-4">
+<!-- Horizontal grid lines -->
+<div class="absolute inset-0 flex flex-col gap-12 pointer-events-none z-0">
+<div class="h-px w-full bg-surface-border/20 mt-3"></div>
+<div class="h-px w-full bg-surface-border/20"></div>
+<div class="h-px w-full bg-surface-border/20"></div>
+<div class="h-px w-full bg-surface-border/20"></div>
+<div class="h-px w-full bg-surface-border/20"></div>
+</div>
+<!-- Cards -->
+<div class="relative z-10 bg-surface-dark border-l-4 border-primary p-3 rounded-r-md shadow-lg w-3/4 mb-12">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-white">Corte de pelo - Juan Pérez</h4>
+<p class="text-xs text-text-secondary">09:00 - 09:45</p>
+</div>
+<div class="bg-primary/10 p-1 rounded text-primary">
+<span class="material-symbols-outlined text-sm">content_cut</span>
+</div>
+</div>
+</div>
+<div class="relative z-10 bg-surface-dark border-l-4 border-blue-400 p-3 rounded-r-md shadow-lg w-full mt-8">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-white">Tinte - María García</h4>
+<p class="text-xs text-text-secondary">10:00 - 11:30</p>
+</div>
+<div class="bg-blue-400/10 p-1 rounded text-blue-400">
+<span class="material-symbols-outlined text-sm">brush</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Overlay for dimming effect (Mobile) -->
+<div class="fixed inset-0 bg-black/60 z-30 md:hidden"></div>
+<!-- Sliding Panel (Right Drawer) -->
+<div class="absolute top-0 right-0 bottom-0 w-full max-w-md bg-surface-dark border-l border-surface-border shadow-2xl z-40 flex flex-col transform transition-transform duration-300 translate-x-0">
+<!-- Panel Header -->
+<div class="flex items-center justify-between px-6 py-5 border-b border-surface-border bg-surface-dark">
+<div>
+<h2 class="text-xl font-bold text-white">Nueva Cita</h2>
+<p class="text-sm text-text-secondary mt-1">Ingresa los detalles para agendar.</p>
+</div>
+<button class="text-text-secondary hover:text-white transition-colors p-1 rounded-md hover:bg-surface-border">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Panel Body (Scrollable Form) -->
+<div class="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+<!-- Client Info Section -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Datos del Cliente</h3>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Nombre y Apellidos</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">person</span>
+<input class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-text-secondary/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="Ej. Roberto Gómez" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Teléfono</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">call</span>
+<input class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-text-secondary/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="600 000 000" type="tel"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Email</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">mail</span>
+<input class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-4 text-white placeholder-text-secondary/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="cliente@xyz.com" type="email"/>
+</div>
+</div>
+</div>
+</div>
+<div class="h-px w-full bg-surface-border"></div>
+<!-- Appointment Details Section -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold text-primary uppercase tracking-wider mb-2">Detalles de la Cita</h3>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Servicio</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">content_cut</span>
+<select class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-10 text-white focus:ring-1 focus:ring-primary focus:border-primary appearance-none transition-all text-sm">
+<option disabled="" selected="" value="">Selecciona un servicio</option>
+<option value="corte">Corte de Cabello (45 min)</option>
+<option value="barba">Arreglo de Barba (30 min)</option>
+<option value="tinte">Tinte Completo (90 min)</option>
+<option value="peinado">Peinado y Lavado (45 min)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-secondary pointer-events-none text-lg">expand_more</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Fecha</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">calendar_today</span>
+<input class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-4 text-white focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm [color-scheme:dark]" type="date" value="2023-10-03"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Hora</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-lg">schedule</span>
+<select class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 pl-10 pr-10 text-white focus:ring-1 focus:ring-primary focus:border-primary appearance-none transition-all text-sm">
+<option>08:00</option>
+<option>08:30</option>
+<option>09:00</option>
+<option>09:30</option>
+<option>10:00</option>
+<option>10:30</option>
+<option>11:00</option>
+<option>11:30</option>
+<option>12:00</option>
+<option>12:30</option>
+<option>13:00</option>
+<option>13:30</option>
+<option>14:00</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-text-secondary pointer-events-none text-lg">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-white">Anotaciones</label>
+<textarea class="w-full bg-background-dark border border-surface-border rounded-lg py-2.5 px-4 text-white placeholder-text-secondary/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-sm min-h-[100px] resize-none" placeholder="Preferencias del cliente, alergias, notas internas..."></textarea>
+</div>
+</div>
+<!-- Specialist Selection (Optional Visual Touch) -->
+<div class="space-y-3 pt-2">
+<label class="block text-sm font-medium text-white">Asignar a Profesional</label>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-surface-border">
+<!-- Selected State -->
+<div class="flex flex-col items-center gap-2 cursor-pointer group">
+<div class="size-12 rounded-full border-2 border-primary p-0.5 relative">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="Stylist profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBw8nIXMm29rz_NXtmxL5Fv14wKdSuEl8n0SipVdTb88j77jWbc-nezqEzZlgCAcOTovxODZfkgaBw4X5XhFhUHB5U2CT2wW9THSjjsj2oBFI-rzV4dSHpas-6g9tqYSvDuw3LacaMbONmSNBhVUtuAOjhuq8y45V8EUEAB3s9o6ZmgT1BsvFUgjp2fBWDtq0Mfr7FsWF3lPQ6zlcE-z0SP6Zkd1kDXT1kecB7TRGkX9okjhjxW7pj1wFg2k4ymRqeWXcGHxW8mXuQ");'></div>
+<div class="absolute -bottom-1 -right-1 bg-primary text-background-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-[10px] font-bold block">check</span>
+</div>
+</div>
+<span class="text-xs text-primary font-medium">Carlos</span>
+</div>
+<!-- Unselected State -->
+<div class="flex flex-col items-center gap-2 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="size-12 rounded-full border-2 border-transparent p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center grayscale" data-alt="Stylist profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZZDiVeHTqrCFdD1U2G-P2AvmIBw4jfnTB6O_BAInrz9CwhvT-jGZz8Qy-ayGFzHoYImIbbKfZzSWenIc1Epmpq6SZDuv1SmkwjIt6ZbSG4-masZXiLNQEEDHZVIWNQpGmbfD_L0DexkL34OwBt_Mczcq1wN_sOewyAPquZEm85BWxUqhhUCxn6d10EYAhgL-9_adRI7rsE29HjudxNrL9f0RFhuJ0hE62ELbRV8otrJhvh5cL3ekhN6Qe1pTfwXVw4R2dshYBSkQ");'></div>
+</div>
+<span class="text-xs text-text-secondary">Ana</span>
+</div>
+<div class="flex flex-col items-center gap-2 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="size-12 rounded-full border-2 border-transparent p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center grayscale" data-alt="Stylist profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhSntwg3p9sdxIUN5H5Bm1bh0t-ICiMuw9nZq1kV_tck4TaUMqeu3hWhkrCCegJXEcgYhETYnkVzCF_GJaX_J40UdEHCNwVDQ358SEvNur2XNdU6quoz9rgMFpPRxvG3pnSYjIAC8ydSxVLIoXxFtAU2SodMutWFgjnEQeN5vLUnTA5dur0W_wioLFqtdFnCCXHWbUbYz3dXUy55bxuCx16bpnoMCSW9H7Df7h8FfryVeavleUj9WFvCnocVkzj_nFOIIsee2mCGw");'></div>
+</div>
+<span class="text-xs text-text-secondary">Luis</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel Footer (Actions) -->
+<div class="p-6 border-t border-surface-border bg-surface-dark flex gap-3">
+<button class="flex-1 py-2.5 px-4 border border-surface-border rounded-lg text-white font-medium hover:bg-surface-border transition-colors text-sm">
+                    Cancelar
+                </button>
+<button class="flex-1 py-2.5 px-4 bg-primary text-background-dark rounded-lg font-bold hover:bg-primary-dark transition-colors text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(56,255,119,0.2)]">
+<span class="material-symbols-outlined text-lg">save</span>
+                    Guardar Cita
+                </button>
+</div>
+</div>
+</div>
+</body></html>

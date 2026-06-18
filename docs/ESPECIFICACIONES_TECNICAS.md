@@ -153,8 +153,18 @@ CREATE TABLE usuarios (
     dni VARCHAR(20) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     email VARCHAR(150) UNIQUE NOT NULL,
-    password_hash VARCHAR(64) NOT NULL, -- SHA-256 (Hexadecimal de 64 caracteres)
-    creado_en TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    pwd VARCHAR(64) NOT NULL, -- Almacenará SHA-256
+    creado TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+-- 1.2. Tabla Cliente (Clientes a quienes se les ofrece el servicio)
+CREATE TABLE clientes (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(150) NOT NULL,
+    apellido_1 VARCHAR(100) NOT NULL,
+    apellido_2 VARCHAR(100),
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
 );
 
 -- 2. Tabla de Catálogo de Servicios
@@ -168,19 +178,15 @@ CREATE TABLE servicios (
 
 -- 3. Tabla Core de la Agenda (Eventos / Citas)
 CREATE TABLE eventos (
-    id VARCHAR(10) PRIMARY KEY, -- Estructura compacta string: YYMMDDHHM
-    nombre_cliente VARCHAR(150) NOT NULL,
-    apellido_1_cliente VARCHAR(100) NOT NULL,
-    apellido_2_cliente VARCHAR(100),
-    dni_cliente VARCHAR(20) NOT NULL,
-    email_cliente VARCHAR(150) NOT NULL,
-    telefono_cliente VARCHAR(20) NOT NULL,
-    fecha DATE NOT NULL,
-    hora TIME NOT NULL,
+    id VARCHAR(10) PRIMARY KEY, -- Formato compacto YYMMDDHHM
+    fecha DATE NOT NULL,          -- Formato YYYY-MM-DD
+    hora TIME NOT NULL,           -- Formato HH:MM
     anotaciones TEXT,
+    id_cliente INT NOT NULL,
     id_servicio INT NOT NULL,
-    id_usuario_gestor INT NOT NULL,
-    creado_en TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    id_usuario_gestor INT NOT NULL, -- Quién registró la cita
+    creado TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id),
     CONSTRAINT fk_servicio FOREIGN KEY (id_servicio) REFERENCES servicios(id),
     CONSTRAINT fk_usuario_gestor FOREIGN KEY (id_usuario_gestor) REFERENCES usuarios(id)
 );
@@ -188,11 +194,13 @@ CREATE TABLE eventos (
 -- 4. Tabla de Consultas Públicas (Formulario de Contacto Libre)
 CREATE TABLE consultas (
     id SERIAL PRIMARY KEY,
-    nombre_usuario VARCHAR(150) NOT NULL,
-    email_usuario VARCHAR(150) NOT NULL, -- Permite múltiples entradas por el mismo email a lo largo del tiempo
-    tema_consulta VARCHAR(200) NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
+    apellido_1 VARCHAR(100),
+    apellido_2 VARCHAR(100),
+    email VARCHAR(150) NOT NULL, -- No es único (múltiples consultas)
+    asunto VARCHAR(200) NOT NULL,
     mensaje TEXT NOT NULL,
-    creado_en TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    creado TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
