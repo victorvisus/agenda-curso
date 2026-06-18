@@ -42,7 +42,7 @@ li {
 }
 i {
   font-size: 1rem;
-  font-family: "fontawesome";
+  font-family: 'fontawesome';
   font-style: normal;
   margin: 0 10px 0 12px;
   /*font-weight: 500;*/
@@ -133,12 +133,12 @@ ul {
 /*******************************************************************************/
 /***********************************************************  FORMULARIOS   ****/
 /*******************************************************************************/
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="number"],
-input[type="search"],
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='date'],
+input[type='number'],
+input[type='search'],
 select,
 textarea {
   font-family: var(--font-textos);
@@ -169,10 +169,10 @@ textarea:focus {
 /*******************************************************************************/
 /***********************************************************      BOTONES   ****/
 /*******************************************************************************/
-a[type="button"],
+a[type='button'],
 a.btn,
 button,
-input[type="submit"] {
+input[type='submit'] {
   /* texto */
   font-family: var(--font-alt);
   font-weight: var(--weight-semibold);
@@ -205,35 +205,35 @@ input[type="submit"] {
   transition: all var(--transition-vel) ease-in-out;
   box-shadow: none;
 }
-a[type="button"].white-btn,
+a[type='button'].white-btn,
 a.btn.white-btn,
 button.white-btn,
-input[type="submit"].white-btn {
+input[type='submit'].white-btn {
   border-color: var(--color-blanco);
   background-color: var(--color-blanco);
   color: var(--color-primario);
 }
-a[type="button"].dark-btn,
+a[type='button'].dark-btn,
 a.btn.dark-btn,
 button.dark-btn,
-input[type="submit"].dark-btn {
+input[type='submit'].dark-btn {
   border-color: var(--color-primario);
   background-color: var(--color-negro);
   color: var(--color-primario);
 }
-a[type="button"].transparent-btn,
+a[type='button'].transparent-btn,
 a.btn.transparent-btn,
 button.transparent-btn,
-input[type="submit"].transparent-btn {
+input[type='submit'].transparent-btn {
   border-color: var(--color-primario);
   background-color: transparent;
   color: var(--color-primario);
 }
 
-a[type="button"]:hover,
+a[type='button']:hover,
 a.btn:hover,
 button:hover,
-input[type="submit"]:hover {
+input[type='submit']:hover {
   border-color: var(--color-negro);
   background-color: transparent;
   color: var(--color-negro);

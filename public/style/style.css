@@ -1,5 +1,5 @@
 :root {
-  /* Tus Colores Personalizados */
+  /* Colores Personalizados */
   --color-negro-carbon: #0e0e11;
   --color-gris-antracita: #1c1e22;
   --color-gris-acero: #3a3d42;
@@ -13,11 +13,11 @@
   --text-secondary: #94a3b8; /*grs tecnico*/
   --primary-hover: #2ed665;
 
-  /* Tus Fuentes */
-  --font-inter: "Inter", sans-serif;
-  --font-source: "Source Sans 3", sans-serif;
-  --font-jetbrains: "JetBrains Mono", monospace;
-  --font-ejemplo: "Ejemplo", sans-serif;
+  /* Fuentes */
+  --font-inter: 'Inter', sans-serif;
+  --font-source: 'Source Sans 3', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+  --font-ejemplo: 'Ejemplo', sans-serif;
 
   --tw-text-opacity: 1;
   --tw-border-opacity: 1;
@@ -55,7 +55,7 @@
 
 /**** Estilos cuando un div.appointment-card-group es available o locked ****/
 .available.appointment-card-group {
-  .appointment-card-hour p span[role="img"] {
+  .appointment-card-hour p span[role='img'] {
     /* .text-slate-500 */
     color: rgb(100 116 139 / var(--tw-text-opacity, 1));
   }
@@ -71,7 +71,7 @@
   }
 }
 .locked.appointment-card-group {
-  .appointment-card-hour p span[role="img"] {
+  .appointment-card-hour p span[role='img'] {
     /*.text-primary*/
     color: rgb(58 255 122 / var(--tw-text-opacity, 1));
   }
